@@ -12,6 +12,5 @@ nltk
 xlrd
 slixmpp
 SymSpell
-fuzzywuzzy
-python-Levenshtein
+rapidfuzz
 symspellpy

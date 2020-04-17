@@ -8,7 +8,7 @@ import ipdb
 from nlptools.text.docsim import WMDSim
 from nlptools.text.embedding import Embedding
 from nlptools.text.tokenizer import format_sentence
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz
 from .skill_base import SkillBase
 
 

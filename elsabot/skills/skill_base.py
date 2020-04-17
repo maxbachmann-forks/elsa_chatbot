@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import numpy, re
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz, process
 
 """
     Author: Pengjia Zhu (zhupengjia@gmail.com)
@@ -67,11 +67,10 @@ class SkillBase:
         match and replace entity name in text
         """
         upper = regroup.group(1).upper()
-        scores = [fuzz.partial_ratio(upper, e) for e in all_entities]
-        max_id = numpy.argmax(scores)
-        max_score = scores[max_id]
-        if max_score > 80:
-            return "{" + all_entities[max_id] +"}"
+        match process.extractOne(upper, all_entities,
+            processor=None, scorer=fuzz.partial_ratio, score_cutoff=80)
+        if match:
+            return "{" + match[0] +"}"
         else:
             return regroup.group(1)
 
